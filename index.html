@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 💖</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#ffd6e0,#f5c6ec,#e6d0ff);
+color:#2e1420;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* Fade Animation */
+.fade{
+animation:fadeIn 1.2s ease;
+}
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+section{padding:60px 20px;}
+
+h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+h2{
+margin-bottom:15px;
+}
+
+.card{
+background:rgba(255,255,255,0.85);
+border-radius:25px;
+padding:25px;
+max-width:430px;
+margin:25px auto;
+box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+/* Photo Slider */
+.slider{
+display:flex;
+overflow-x:auto;
+gap:15px;
+scroll-snap-type:x mandatory;
+}
+
+.slide{
+min-width:100%;
+scroll-snap-align:start;
+}
+
+.slide img{
+width:100%;
+border-radius:18px;
+}
+
+.caption{
+margin-top:12px;
+font-size:17px;
+line-height:1.7;
+color:#3b1c2b;
+}
+
+/* Audio */
+audio{
+width:100%;
+margin:15px 0;
+}
+
+.playBtn{
+padding:12px 22px;
+border:none;
+border-radius:25px;
+background:#ff6f91;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin:12px 0;
+}
+
+footer{
+font-size:22px;
+padding:70px 20px;
+color:#2e1420;
+}
+
+/* Divider */
+hr{
+border:none;
+height:1px;
+background:#d8a6b8;
+margin:20px 0;
+}
+
+/* Floating Hearts */
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:18px;
+animation:float 6s linear infinite;
+opacity:.6;
+}
+
+@keyframes float{
+to{transform:translateY(-110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<section class="fade">
+<h1>Happy Birthday 🎂✨</h1>
+<p>Made just for my Chote 💖</p>
+</section>
+
+<!-- PHOTO SECTION -->
+<div class="card fade">
+<h2>Just You 🌸</h2>
+
+<div class="slider">
+
+<div class="slide">
+<img src="photo1.jpeg">
+<div class="caption">
+Your smile here feels like sunshine ☀️  
+Soft, warm, and beautiful 🌷  
+You make everything around you brighter 💫
+</div>
+</div>
+
+<div class="slide">
+<img src="photo2.jpeg">
+<div class="caption">
+This moment feels calm and special 🤍  
+Just like your presence 🌙  
+Peaceful and full of warmth 💕
+</div>
+</div>
+
+<div class="slide">
+<img src="photo3.jpeg">
+<div class="caption">
+Pure happiness captured in one frame 😄  
+The kind that stays in the heart 🌸  
+Always shining, always glowing ✨
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- MUSIC SECTION -->
+<div class="card fade">
+<h2>Birthday Vibes 🎶</h2>
+
+<p style="font-weight:bold;">Tap to start your song 💖</p>
+
+<audio id="bgMusic" loop>
+  <source src="mainSong.mp3" type="audio/mpeg">
+</audio>
+
+<button class="playBtn" onclick="startMusic()">Play Background Song 🎵</button>
+
+<div class="caption">
+This song is playing just for you 🎶    
+Hope it makes you smile instantly 🌷
+</div>
+
+<hr>
+
+<div class="caption">
+This one feels like your smile 😊    
+Whenever it plays, everything feels better 💖
+</div>
+<audio controls src="song1.mp3"></audio>
+
+<div class="caption">
+Our comfort song 🤍    
+Like long talks and quiet moments 💫
+</div>
+<audio controls src="song2.mp3"></audio>
+
+<div class="caption">
+Every time this plays, I smile automatically 😄  
+It reminds me your beautiful energy ✨
+</div>
+<audio controls src="song3.mp3"></audio>
+
+<div class="caption">
+This one feels soft and special 💕  
+Just like the moments we share 🌷💖
+</div>
+<audio controls src="song4.mp3"></audio>
+
+</div>
+
+<footer class="fade">
+Hope this year brings you endless happiness 💫  
+More smiles, more laughter, more beautiful moments 🌸  
+Always glowing, always shining ✨
+</footer>
+
+<script>
+
+// Start background music safely
+function startMusic(){
+document.getElementById("bgMusic").play();
+}
+
+// Only one audio plays at a time
+const players = document.querySelectorAll("audio");
+players.forEach(player=>{
+player.addEventListener("play",()=>{
+players.forEach(other=>{
+if(other!==player){
+other.pause();
+other.currentTime=0;
+}
+});
+});
+});
+
+// Floating hearts
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=3+Math.random()*3+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,350);
+
+</script>
+
+</body>
+</html>
